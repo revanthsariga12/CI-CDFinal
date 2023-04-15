@@ -1,0 +1,19 @@
+version: “3.7”
+services:
+    web:
+     image: wordpress
+     links:
+      - mysql
+     environment:
+      - WORDPRESS_DB_PASSWORD=super_secret_password
+     ports:
+      - "8081:80"
+     volumes:
+      - ~/Projects/Wordpress/plugins/myplugin:/var/www/html/wp-content/plugins/myplugin
+      - ~/Projects/Wordpress/themes/serverlab:/var/www/html/wp-content/themes/serverlab
+    mysql:
+     image: mysql:5.7
+     environment:
+      - MYSQL_ROOT_PASSWORD=super_secret_password
+      - MYSQL_DATABASE=wordpress
+ 
