@@ -35,5 +35,4 @@ phases:
       - docker push 058750364011.dkr.ecr.us-east-1.amazonaws.com/wordpress:wordpress
       - docker push 058750364011.dkr.ecr.us-east-1.amazonaws.com/wordpress:mysql
       - kubectl apply -f eks/deployment.yml
-      - kubectl rollout restart -f eks/deployment.yml
       
