@@ -1,9 +1,5 @@
 version: "3.3" 
-networks:
-  web-network:
-    name: project
-  db-network:
-    name: project
+
 services:
   web:
     image: wordpress:latest
@@ -24,8 +20,7 @@ services:
       WORDPRESS_DB_NAME: test_db
     ports:
       - 8000:80
-    networks:
-      - web-network
+    
   db:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password
@@ -39,8 +34,7 @@ services:
       MYSQL_PASSWORD: devpassword
     ports:
       - 6033:3306
-    networks:
-      - db-network
+    
 volumes:
   dbdata:
   wp-content:
