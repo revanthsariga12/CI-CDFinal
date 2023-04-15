@@ -8,11 +8,13 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build --no-cache -t wordpress-web -f dockerfile .
+  #    - docker build --no-cache -t wordpress-web -f dockerfile .
       - docker-compose up -d
-      - docker tag wordpress-web 117499159502.dkr.ecr.us-east-1.amazonaws.com/wordpress-web
+      - docker tag wordpress public.ecr.aws/r2k1r7j6/final:wordpress
+      - docker tag mysql:8.0 public.ecr.aws/r2k1r7j6/final:mysql
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 117499159502.dkr.ecr.us-east-1.amazonaws.com/wordpress-web
+      - docker push public.ecr.aws/r2k1r7j6/final:wordpress
+      - docker push public.ecr.aws/r2k1r7j6/final:mysql
