@@ -1,21 +1,4 @@
 ---
-kind: Service
-apiVersion: v1
-metadata:
-  name: backend-service
-  namespace: default
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: nlb
-spec:
-  type: LoadBalancer
-  selector:
-    app: web
-  ports:
-    - name: http
-      port: 80
-      targetPort: 80
-
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -40,24 +23,3 @@ spec:
           image: 058750364011.dkr.ecr.us-east-1.amazonaws.com/wordpress:wordpress
           ports:
             - containerPort: 80
-
-
----
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: web-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: web
-  minReplicas: 3
-  maxReplicas: 6
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 50
