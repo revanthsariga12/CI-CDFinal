@@ -1,19 +1,46 @@
-version: “3.7”
+version: "3.9" 
+networks:
+  web-network:
+    name: project
+  db-network:
+    name: project
 services:
-    web:
-     image: wordpress
-     links:
-      - mysql
-     environment:
-      - WORDPRESS_DB_PASSWORD=super_secret_password
-     ports:
-      - "8081:80"
-     volumes:
-      - ~/Projects/Wordpress/plugins/myplugin:/var/www/html/wp-content/plugins/myplugin
-      - ~/Projects/Wordpress/themes/serverlab:/var/www/html/wp-content/themes/serverlab
-    mysql:
-     image: mysql:5.7
-     environment:
-      - MYSQL_ROOT_PASSWORD=super_secret_password
-      - MYSQL_DATABASE=wordpress
- 
+  web:
+    image: wordpress:latest
+#    image: final:latest
+#    image: wordpress-b1:latest
+#    build:
+#      context: ./
+#      dockerfile: dockerfile
+    depends_on:
+      - db
+    volumes:
+#      - ./:/var/www/html/
+      - ./wp-content:/var/www/html/wp-content
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: devuser
+      WORDPRESS_DB_PASSWORD: devpassword
+      WORDPRESS_DB_NAME: test_db
+    ports:
+      - 8000:80
+    networks:
+      - web-network
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root 
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: devpassword
+    ports:
+      - 6033:3306
+    networks:
+      - db-network
+volumes:
+  dbdata:
+  wp-content:
