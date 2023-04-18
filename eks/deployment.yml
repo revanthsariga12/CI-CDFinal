@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
         - name: back-end
-          image: 058750364011.dkr.ecr.us-east-1.amazonaws.com/wordpress:wordpress
+          image: 058750364011.dkr.ecr.us-east-1.amazonaws.com/final:latest
           ports:
             - containerPort: 80
 
