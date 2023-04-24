@@ -1,7 +1,7 @@
 ---
 kind: Service
 apiVersion: v1
-metadata:   
+metadata:
   name: backend-service
   namespace: default
   annotations:
@@ -37,10 +37,10 @@ spec:
     spec:
       containers:
         - name: back-end
-          image: 058750364011.dkr.ecr.us-east-1.amazonaws.com/sample:latest
+          image: 058750364011.dkr.ecr.us-east-1.amazonaws.com/wordpress:wordpress
           ports:
             - containerPort: 80
-
+              name: back-end
 
 ---
 apiVersion: autoscaling/v2
