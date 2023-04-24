@@ -1,7 +1,7 @@
 ---
 kind: Service
 apiVersion: v1
-metadata:
+metadata:   
   name: backend-service
   namespace: default
   annotations:
