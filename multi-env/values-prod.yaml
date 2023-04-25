@@ -1,0 +1,4 @@
+app:
+  replicas: 4
+  container: 
+    image: 058750364011.dkr.ecr.us-east-1.amazonaws.com/wordpress:latest
