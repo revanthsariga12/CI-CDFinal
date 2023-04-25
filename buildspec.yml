@@ -35,4 +35,10 @@ phases:
       - docker push 058750364011.dkr.ecr.us-east-1.amazonaws.com/wordpress:wordpress
       - docker push 058750364011.dkr.ecr.us-east-1.amazonaws.com/wordpress:mysql
       - kubectl apply -f eks/deployment.yml
+      - kubectl create namespace prod
+      - kubectl create namespace dev
+      - helm install k8s multi-env --namespace dev -f ./multi-env/values-dev.yaml
+      - helm install k8s multi-env --namespace prod -f ./multi-env/values-prod.yam
+
+
       
