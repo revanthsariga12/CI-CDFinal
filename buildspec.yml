@@ -41,7 +41,7 @@ phases:
  #     - kubectl create namespace production
  #     - kubectl create namespace developer
       - helm install k8s multi-env --namespace developer -f ./multi-env/values-dev.yaml
-      - helm install k8s multi-env --namespace production -f ./multi-env/values-prod.yam
+      - helm install k8s multi-env --namespace production -f ./multi-env/values-prod.yaml
 
 
       
